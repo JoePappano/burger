@@ -7,3 +7,16 @@
         </li>
     {{/each}}
 </ul>
+
+<h2> Add A Burger </h2>
+
+<form method="POST" action="/create">
+    <textarea type="text" name="burger"></textarea>
+    <button href="/create" type="submit"> Submit </button>
+</form>
+
+<h2>Update Your Burger</h2>
+<form method="POST" action="/update?_method=PUT">
+    <input style="width:25%;" type="text" name="movie" placeholder="What do you want your new burger to be?">
+    <button type="submit"> UPDATE BURGER </button>
+</form>

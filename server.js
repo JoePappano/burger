@@ -14,16 +14,20 @@ var connection = require("./config/connection.js")
 
 // app.use(routes);
 
-app.listen(PORT, function(){
-    console.log("Now listening at localhost:" + PORT)
-})
+app.post("/create", function(req, res) {
+    connection.query("INSERT INTO burgers (burger_name) VALUES (?);", [req.body.burger], function(err, data){
+        if (err) throw err;
+        res.redirect("/");
+    });
+});
 
 app.get("/", function(req, res) {
-    var hbsObject = {
-        burgers: data
-    };
-    console.log(hbsObject)
-    connection.query("SELECT * FROM burgers;", function(err, data) {
-        res.render('index', {movies:data});
+    connection.query("SELECT * FROM burgers", function(err, data) {
+        res.render('index', {burgers:data});
     })
+})
+
+
+app.listen(PORT, function(){
+    console.log("Now listening at localhost:" + PORT)
 })
