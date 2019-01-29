@@ -24,8 +24,37 @@ app.post("/create", function(req, res) {
 app.get("/", function(req, res) {
     connection.query("SELECT * FROM burgers", function(err, data) {
         res.render('index', {burgers:data});
-    })
+    });
 })
+
+app.post("/update", function(req, res) {
+    connection.query("UPDATE burgers SET burger_name = ? WHERE id = ?;", [req.body.updatedBurger, req.body.id], function(err, result) {
+        if (err) throw err;
+        res.redirect("/");
+    });
+});
+app.post("/update", function(req, res) {
+    connection.query("UPDATE burgers SET burger_name = ? WHERE id = ?;", [req.body.updatedBurger, req.body.id], function(err, result) {
+        if (err) throw err;
+        res.redirect("/");
+    });
+});
+app.post("/devour", function(req, res) {
+    console.warn('devour', req.body)
+    connection.query("UPDATE burgers SET devoured = true WHERE id = ?;", [req.body.id], function(err, result) {
+        if (err) throw err;
+        res.redirect("/");
+    });
+});
+
+
+
+app.post("/delete", function(req, res) {
+    connection.query("DELETE FROM burgers WHERE id = ?;", [req.body.id], function(err, results) {
+        if (err) throw err;
+        res.redirect("/");
+    });
+});
 
 
 app.listen(PORT, function(){

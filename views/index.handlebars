@@ -1,10 +1,43 @@
 <h1> Burgers </h1>
 
+<h2> Not Devoured Burgers</h2>
 <ul>
     {{#each burgers}}
-        <li>
-            <p>{{this.id}}. {{this.burger_name}}</p>
-        </li>
+    {{#unless devoured}}
+    <li>
+        <p>{{this.id}}. {{this.burger_name}}</p>
+        <form action="/delete?_method=DELETE" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button type="submit"> DELETE </button>
+        </form>
+        <form action="/devour?_method=UPDATE" method="POST">
+            <button class="change-devoured" data-id="{{this.id}}" name="id" value="{{this.id}}" data-newdevoured="{{devoured}}">
+                {{#if devoured}}DEVOURED!!{{else}}TRY IT!{{/if}}
+        </form>
+    </li>
+    {{/unless}}
+    {{/each}}
+</ul>
+
+<h2> Devoured burgers </h2>
+<ul>
+    {{#each burgers}}
+    {{#if devoured}}
+    <li>
+        <p>{{this.id}}. {{this.burger_name}}</p>
+        <form action="/delete" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button type="submit"> DELETE </button>
+            <button class="change-devoured" data-id="{{this.id}}" data-newdevoured="{{devoured}}">
+                {{#if devoured}}DEVOURED!!{{else}}TRY IT!{{/if}}
+            </button>
+        </form>
+
+
+
+
+    </li>
+    {{/if}}
     {{/each}}
 </ul>
 
@@ -17,6 +50,7 @@
 
 <h2>Update Your Burger</h2>
 <form method="POST" action="/update?_method=PUT">
-    <input style="width:25%;" type="text" name="movie" placeholder="What do you want your new burger to be?">
-    <button type="submit"> UPDATE BURGER </button>
+    <input type="text" name="id" placeholder="id">
+    <textarea style="width:25%; height: 20px;" type="text" name="updatedBurger" placeholder="What do you want your new burger to be?"></textarea>
+    <button href="/update" type="submit"> UPDATE BURGER </button>
 </form>
