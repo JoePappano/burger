@@ -6,12 +6,13 @@ var burger = {
             cb(res);
         }})
       },
-      insertOne: function(table, cols, vals, cb) {
+      insertOne: function(cols, vals, cb) {
         orm.insertOne("burgers", cols, vals, function(res) {
-            cb(res);
-        })
+          cb(res);
+        });
       },
-      updateOne: function(table, objColVals, condition, cb) {
+      updateOne: function(objColVals, condition, cb) {
+          console.log("my condition " , condition)
         orm.updateOne("burgers", objColVals, condition, function(res) {
             cb(res);
         });
@@ -23,7 +24,7 @@ var burger = {
       },
       delete: function(table, condition, cb) {
           orm.delete("burgers", condition, function(res) {
-            cb(res);
+            cb(res)
           });
       }
 }
