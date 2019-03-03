@@ -1,12 +1,12 @@
 var mysql = require("mysql");
 if (process.env.PORT) {
     var connection = mysql.createConnection({
-        host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        port: 3306,
-        user: "dqt06yo9af7t9r4h",
-        password: "vjux9fihsl2idf1h",
-        database: "tupvkrrvao1v8hg8",
-        use_env_variable: "JAWSDB_URL",
+        host: "ec2-54-83-55-115.compute-1.amazonaws.com",
+        port: 5432,
+        user: "hqlrtnxumoixtk",
+        password: "6ee54a47cc15fe58cb24a694f983ffdefef1aebdbb212de537a80d680db41a83",
+        database: "dd9k1d5aecu2c6",
+        // use_env_variable: "JAWSDB_URL",
         dialect: "mysql"
     });
 } else {
